@@ -1,0 +1,31 @@
+import sqlite3
+
+#to create a database
+connection = sqlite3.connect('movies.db')
+
+#create a cursor object
+cursor = connection.cursor()
+
+#create table
+cursor.execute('''CREATE TABLE IF NOT EXISTS Movies
+              (name TEXT,actress TEXT,actor TEXT, Director TEXT, Year INT)''')
+
+#insert data into the table
+cursor.execute('''INSERT INTO Movies values('Chennai express','Deepika','Srk','Rohith',2015) ''')
+#commit the changes
+connection.commit()
+
+cursor.execute('''INSERT INTO Movies values('Barfi','Deepika','Ranbir','Rohith',2018) ''')
+#commit the changes
+connection.commit()
+
+cursor.execute('''INSERT INTO Movies values('Cocktail','Deepika','Saif','Arjun',2017) ''')
+#commit the changes
+connection.commit()
+
+#select data
+cursor.execute('SELECT * FROM Movies')
+cursor.execute('SELECT name from Movies where Year=2015')
+
+
+connection.close()
